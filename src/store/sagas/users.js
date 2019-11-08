@@ -1,13 +1,16 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { api } from '~/services';
+import {call, put, takeLatest} from 'redux-saga/effects';
+import {api} from '~/services';
 
-import { Creators as UsersActions, Types as UsersTypes } from '~/store/ducks/users';
+import {
+  Creators as UsersActions,
+  Types as UsersTypes,
+} from '~/store/ducks/users';
 
 export function* getUserLoggedRequest() {
   try {
     const url = 'me';
     const response = yield call(api.get, url);
-    const { data } = response;
+    const {data} = response;
 
     yield put(UsersActions.getUserLoggedSuccess(data));
   } catch (error) {

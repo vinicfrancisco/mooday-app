@@ -87,7 +87,7 @@ export default function auth(state = initialState, action) {
 export const Creators = {
   loginRequest: data => ({
     type: Types.LOGIN_REQUEST,
-    payload: { data },
+    payload: {data},
   }),
 
   loginSuccess: () => ({
@@ -100,7 +100,7 @@ export const Creators = {
 
   signUpRequest: data => ({
     type: Types.SIGNUP_REQUEST,
-    payload: { data },
+    payload: {data},
   }),
 
   signUpSuccess: () => ({

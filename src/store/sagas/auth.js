@@ -1,28 +1,29 @@
-import { call, put, takeLatest, delay } from 'redux-saga/effects';
-import { api } from '~/services';
+import {call, put, takeLatest, delay} from 'redux-saga/effects';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Actions} from 'react-native-router-flux';
+import {api} from '~/services';
 
-import { Creators as AuthActions, Types as AuthTypes } from '~/store/ducks/auth';
+import {Creators as AuthActions, Types as AuthTypes} from '~/store/ducks/auth';
 
 function* loginRequest(action) {
   try {
-    const { data } = action.payload;
+    const {data} = action.payload;
     const url = '/login';
     const response = yield call(api.post, url, data);
-    const { token } = response.data;
+    const {token} = response.data;
 
-    // localStorage.setItem('auth_token', token);
+    AsyncStorage.setItem('auth_token', token);
 
-    // yield put(push('/'));
+    yield put(Actions.home());
     yield put(AuthActions.loginSuccess());
   } catch (error) {
-    // yield call(swal, 'Ops, algo deu errado', 'Não foi possível efetuar o login, tente novamente!', 'error');
     yield put(AuthActions.loginFailure());
   }
 }
 
 function* registerRequest(action) {
   try {
-    const { data } = action.payload;
+    const {data} = action.payload;
     const url = '/register';
     yield call(api.post, url, data);
 
@@ -33,19 +34,18 @@ function* registerRequest(action) {
       }),
     );
 
-    // yield put(push('/'));
+    yield put(Actions.home());
     yield put(AuthActions.signUpSuccess());
   } catch (error) {
-    // yield call(swal, 'Ops, algo deu errado', 'Não foi possível efetuar o cadastro, tente novamente!', 'error');
     yield put(AuthActions.signUpFailure());
   }
 }
 
 function* logoutRequest() {
   try {
-    // localStorage.clear();
+    AsyncStorage.clear();
     yield delay(500);
-    // yield put(push('/login'));
+    yield put(Actions.login());
 
     yield put(AuthActions.logoutSuccess());
   } catch (error) {

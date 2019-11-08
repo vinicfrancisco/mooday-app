@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Creators as AuthActions } from '~/store/ducks/auth';
+import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {Creators as AuthActions} from '~/store/ducks/auth';
 
-import { ActivityIndicator } from 'react-native';
+import {ActivityIndicator} from 'react-native';
 
-
-import { Button } from '~/components';
+import {Button} from '~/components';
 import LogoImage from '~/assets/images/logo.png';
-import { colors } from '~/assets/styles';
+import {colors} from '~/assets/styles';
 
-import { Container, Box, Logo, Form, FormInput } from './styles';
+import {Container, Box, Logo, Form, FormInput} from './styles';
 
 function Login() {
   const dispatch = useDispatch();
@@ -29,10 +28,14 @@ function Login() {
   }, [auth]);
 
   function handleSubmit() {
-    signUp ? dispatch(AuthActions.signUpRequest(data)) : dispatch(AuthActions.loginRequest({
-      email: data.email,
-      password: data.password,
-    }))
+    signUp
+      ? dispatch(AuthActions.signUpRequest(data))
+      : dispatch(
+          AuthActions.loginRequest({
+            email: data.email,
+            password: data.password,
+          }),
+        );
   }
 
   function handleChangeInput(name, value) {
@@ -48,12 +51,13 @@ function Login() {
         <Logo source={LogoImage} />
 
         <Form>
-          {signUp &&
-          <FormInput
-            placeholder="Usuário"
-            value={data.username}
-            onChangeText={value => handleChangeInput('username', value)}
-          />}
+          {signUp && (
+            <FormInput
+              placeholder="Usuário"
+              value={data.username}
+              onChangeText={value => handleChangeInput('username', value)}
+            />
+          )}
 
           <FormInput
             autoCapitalize="none"
@@ -72,7 +76,11 @@ function Login() {
           <Button onPress={() => handleSubmit()}>
             {loading ? (
               <ActivityIndicator size="small" color={colors.white} />
-            ) : signUp ? 'Cadastrar' : 'Login'}
+            ) : signUp ? (
+              'Cadastrar'
+            ) : (
+              'Login'
+            )}
           </Button>
 
           <Button outline onPress={() => setSignUp(!signUp)}>
@@ -81,7 +89,7 @@ function Login() {
         </Form>
       </Box>
     </Container>
-  )
+  );
 }
 
 export default Login;

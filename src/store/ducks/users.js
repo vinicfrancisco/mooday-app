@@ -50,7 +50,7 @@ export const Creators = {
 
   getUserLoggedSuccess: user => ({
     type: Types.GET_LOGGED_SUCCESS,
-    payload: { user },
+    payload: {user},
   }),
 
   getUserLoggedFailure: () => ({

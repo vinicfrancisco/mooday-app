@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { colors, metrics } from '~/assets/styles';
+import {colors, metrics} from '~/assets/styles';
 
 export const Container = styled.View`
   align-items: center;
   background-color: ${colors.primary};
   height: 100%;
   justify-content: center;
-`
+`;
 
 export const Box = styled.View`
   align-items: center;
@@ -23,7 +23,6 @@ export const Logo = styled.Image`
   width: 180px;
 `;
 
-
 export const Form = styled.View`
   width: 100%;
 `;
@@ -36,4 +35,3 @@ export const FormInput = styled.TextInput`
   padding: 6px 10px;
   width: 100%;
 `;
-

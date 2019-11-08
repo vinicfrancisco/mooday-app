@@ -1,4 +1,4 @@
-import { create } from 'axios';
+import {create} from 'axios';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -14,7 +14,6 @@ const api = create({
 
 api.interceptors.request.use(
   async config => {
-
     const token = await AsyncStorage.getItem('@Zodio:auth_token');
 
     if (token !== null) {
@@ -29,9 +28,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   config => config,
   error => {
-
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
