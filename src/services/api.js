@@ -14,7 +14,7 @@ const api = create({
 
 api.interceptors.request.use(
   async config => {
-    const token = await AsyncStorage.getItem('@Zodio:auth_token');
+    const token = await AsyncStorage.getItem('auth_token');
 
     if (token !== null) {
       config.headers.Authorization = `Bearer ${token}`;
