@@ -44,6 +44,19 @@ function Routes() {
           title="Meus questionários"
           titleStyle={{color: colors.white}}
         />
+
+        <Scene
+          key="questionary"
+          title="Responder Questionário"
+          backTitle="Voltar"
+          component={Pages.Questionaries.Detail}
+          navigationBarStyle={{
+            backgroundColor: colors.primary,
+          }}
+          titleStyle={{color: colors.white}}
+          backButtonTextStyle={{color: colors.white}}
+          backButtonTintColor={colors.white}
+        />
       </Stack>
     </Router>
   );

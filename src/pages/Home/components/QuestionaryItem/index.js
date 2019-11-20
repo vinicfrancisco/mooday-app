@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Foundation';
 
 import {colors} from '~/assets/styles';
@@ -10,7 +11,7 @@ function QuestionaryItem(props) {
   const {data} = props;
 
   return (
-    <Container onPress={() => {}}>
+    <Container onPress={() => Actions.questionary()}>
       <Icon size={45} name="clipboard-pencil" color={colors.darkGray} />
 
       <Info>
