@@ -4,6 +4,7 @@ import {colors, metrics} from '~/assets/styles';
 export const Container = styled.View`
   background-color: ${colors.primary};
   height: 100%;
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -24,7 +25,7 @@ export const QuestionText = styled.Text`
 `;
 
 export const Options = styled.View`
-  margin-top: 25px;
+  margin-bottom: 25px;
 `;
 
 export const Option = styled.TouchableOpacity`

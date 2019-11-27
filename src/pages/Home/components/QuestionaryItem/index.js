@@ -11,7 +11,7 @@ function QuestionaryItem(props) {
   const {data} = props;
 
   return (
-    <Container onPress={() => Actions.questionary()}>
+    <Container onPress={() => Actions.questionary({id: data.id})}>
       <Icon size={45} name="clipboard-pencil" color={colors.darkGray} />
 
       <Info>

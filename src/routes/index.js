@@ -47,7 +47,7 @@ function Routes() {
 
         <Scene
           key="questionary"
-          title="Responder Questionário"
+          title="Responder questionário"
           backTitle="Voltar"
           component={Pages.Questionaries.Detail}
           navigationBarStyle={{
