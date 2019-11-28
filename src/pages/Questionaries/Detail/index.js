@@ -23,24 +23,17 @@ function Detail(props) {
 
   const [data, setData] = useState(null);
   const [question, setQuestion] = useState(null);
-  const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(-1);
   const [total, setTotal] = useState(0);
   const [questionary, setQuestionary] = useState({
     questionary_id: id,
-    anwsers: [],
+    answers: [],
   });
 
   useEffect(() => {
     loadData();
   }, []);
-
-  useEffect(() => {
-    done &&
-      setTimeout(() => {
-        Actions.reset('home');
-      }, 1500);
-  }, [done]);
 
   useEffect(() => {
     data !== null && setIndex(0);
@@ -54,12 +47,16 @@ function Detail(props) {
   useEffect(() => {
     index !== -1 && setIndex(index + 1);
 
-    total !== 0 && questionary.anwsers.length === total && finish();
+    total !== 0 && questionary.answers.length === total && finish();
   }, [questionary]);
 
   async function finish() {
-    console.tron.log(questionary);
-    setDone(true);
+    setLoading(true);
+    await api.post('/answer', questionary);
+
+    setTimeout(() => {
+      Actions.reset('home');
+    }, 1500);
   }
 
   async function loadData() {
@@ -74,8 +71,8 @@ function Detail(props) {
   function selectOption(option) {
     setQuestionary({
       ...questionary,
-      anwsers: [
-        ...questionary.anwsers,
+      answers: [
+        ...questionary.answers,
         {option_id: option.id, question_id: question.id},
       ],
     });
@@ -84,7 +81,7 @@ function Detail(props) {
   return (
     <Page color={colors.primary}>
       <Container>
-        {done ? (
+        {loading ? (
           <Lottie
             style={{alignSelf: 'center', width: metrics.screenWidth * 0.9}}
             resizeMode="contain"
